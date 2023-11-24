@@ -6,12 +6,14 @@
 @page "/SupervisorHomePage"
 
 <h3>SupervisorHomePage</h3>
-@foreach(var student in supervisor.Students)
+
+@foreach(var student in supervisor!.Students)
 {
     <div>
         <h4>Student Number: @student.StudentNumber</h4>
         <h4>Name: @student.FirstName @student.LastName</h4>
         <h4>Wellbeing Score: @student.WellbeingScore</h4>
+        <button @onclick="() => OpenDetails(student)">View Profile</button>
     </div>
 }
 
@@ -22,14 +24,17 @@
 @code {
     private List<SeniorTutorModel>? seniorTutors;
     private List<PersonalSupervisorModel>? personalSupervisors;
-    PersonalSupervisorModel supervisor;
+    PersonalSupervisorModel? supervisor;
 
     protected override void OnInitialized()
     {
         seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         personalSupervisors = seniorTutors[0].PersonalSupervisors;
         supervisor = personalSupervisors[0];
+    }
 
-        
+    private void OpenDetails(StudentModel student)
+    {
+        navManager.NavigateTo($"/Details/{student.StudentNumber}");
     }
 }

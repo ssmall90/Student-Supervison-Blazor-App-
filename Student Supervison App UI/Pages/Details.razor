@@ -1,0 +1,57 @@
+﻿@page "/Details/{StudentNumber}"
+@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Models;
+@inject IDataManager dataManager
+@inject NavigationManager navManager
+
+<h3>Details</h3>
+
+<h4>Student Details</h4>
+<div>
+    <h5>@student!.StudentNumber</h5>
+    <h5>@student!.FirstName @student.LastName</h5>
+</div>
+
+<h4>Student Statuses</h4>
+@if(student.Statuses.Count > 0)
+{
+    <div>
+        @foreach (var status in student.Statuses)
+        {
+            <div>
+                @status.ToString();
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div>
+        <h5>@student!.FirstName @student.LastName Has No Statuses</h5>
+    </div>
+}
+
+<h4>Wellbeing Score</h4>
+<div>
+    <h5>@student!.WellbeingScore</h5>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string? StudentNumber { get; set; }
+
+    private List<SeniorTutorModel>? database;
+    StudentModel? student;
+
+
+
+    protected override void OnInitialized()
+    {
+        database = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber!,database);
+
+    }
+
+}
