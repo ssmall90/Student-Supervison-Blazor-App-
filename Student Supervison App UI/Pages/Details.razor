@@ -87,6 +87,8 @@ else
         if(student!.PersonalSupervisor.AvailableAppointments.Count > 0)
         {
             dataManager.ScheduleAppointmentForSupervisor(student!.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.AvailableAppointments[0].AppointmentId, student.StudentNumber, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+            student.PersonalSupervisor.InteractionScore += 10;
+            dataManager.UpdateInteractionScore(student.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
             appointments = true;
         }
         else

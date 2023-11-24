@@ -19,10 +19,9 @@ namespace Student_Supervisor_Logic.Models
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 string txtFileName = "LastStudentNumber.txt";
 
-                // Navigating up multiple levels to reach the desired folder
                 string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName)?.FullName)?.FullName)?.FullName)?.FullName;
 
-                string txtFilePath = Path.Combine(parentDirectory, "Student Supervisor Data Access", "TextFiles", txtFileName);
+                string txtFilePath = Path.Combine(parentDirectory, "Student Supervison App Library", "TextFiles", txtFileName);
 
                 return txtFilePath;
             }
