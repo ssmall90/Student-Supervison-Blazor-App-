@@ -1,0 +1,35 @@
+﻿@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Models;
+@inject IDataManager dataManager
+@inject NavigationManager navManager
+
+@page "/SupervisorHomePage"
+
+<h3>SupervisorHomePage</h3>
+@foreach(var student in supervisor.Students)
+{
+    <div>
+        <h4>Student Number: @student.StudentNumber</h4>
+        <h4>Name: @student.FirstName @student.LastName</h4>
+        <h4>Wellbeing Score: @student.WellbeingScore</h4>
+    </div>
+}
+
+
+
+
+
+@code {
+    private List<SeniorTutorModel>? seniorTutors;
+    private List<PersonalSupervisorModel>? personalSupervisors;
+    PersonalSupervisorModel supervisor;
+
+    protected override void OnInitialized()
+    {
+        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        personalSupervisors = seniorTutors[0].PersonalSupervisors;
+        supervisor = personalSupervisors[0];
+
+        
+    }
+}

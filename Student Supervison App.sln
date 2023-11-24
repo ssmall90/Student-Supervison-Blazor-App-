@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Student Supervison App UI", "Student Supervison App UI\Student Supervison App UI.csproj", "{0CE20349-91C5-47CA-BDD3-D03D01F024FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student Supervison App Library", "Student Supervison App Library\Student Supervison App Library.csproj", "{AD4B6D6A-1352-4B10-BBEC-6B33320E2365}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CE20349-91C5-47CA-BDD3-D03D01F024FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE20349-91C5-47CA-BDD3-D03D01F024FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE20349-91C5-47CA-BDD3-D03D01F024FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE20349-91C5-47CA-BDD3-D03D01F024FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD4B6D6A-1352-4B10-BBEC-6B33320E2365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4B6D6A-1352-4B10-BBEC-6B33320E2365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4B6D6A-1352-4B10-BBEC-6B33320E2365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4B6D6A-1352-4B10-BBEC-6B33320E2365}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E29AC601-E78C-4BE0-A6D5-7987DF43EA10}
+	EndGlobalSection
+EndGlobal
