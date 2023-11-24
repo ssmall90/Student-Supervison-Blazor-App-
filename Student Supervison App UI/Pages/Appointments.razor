@@ -7,87 +7,131 @@
 
 <h3>Appointments</h3>
 
-
-<h4>Available Appointments</h4>
-@if(personalSupervisor!.AvailableAppointments.Count > 0)
-{
-    @foreach (var app in personalSupervisor!.AvailableAppointments)
-    {
-        <div>
-            @app.AppointmentId
-            @app.Date
-            @app.Time
-            @app.Duration
-        </div>
-    }
-}
-else
-{
-    <div>You Have No Avaiable Appointments</div>
+<div class="app-btn-container">
     <div>
-        <button>Add Available Appointment</button>
+        <button @onclick="() => SelectView(ref isAvailable)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Available Appointments</button>
     </div>
-}
+    <div>
+        <button @onclick="() => SelectView(ref isScheduled)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Scheduled Appointments</button>
+    </div>
+    <div>
+        <button @onclick="() => SelectView(ref isCompleted)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Completed Appointments</button>
+    </div>
+    <div>
+        <button @onclick="() => SelectView(ref isIncomplete)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Incomplete Appointments</button>
+    </div>
+</div>
 
-
-<h4>Scheduled Appointments</h4>
-@if (personalSupervisor!.ScheduledAppointments.Count > 0)
-{
-    @foreach (var app in personalSupervisor!.ScheduledAppointments)
+<div class="app-display-container">
+    @if (isAvailable)
     {
-        <div>
-            @app.AppointmentId
-            @app.Date
-            @app.Time
-            @app.Duration
-        </div>
+        <h6 class="app-heading">Available Appointments</h6>
+        @if (personalSupervisor!.AvailableAppointments.Count > 0)
+        {
+            @foreach (var app in personalSupervisor!.AvailableAppointments)
+            {
+                <div class="studentBox">
+                    <div>
+                        <h6>Id: @app.AppointmentId</h6>
+                        <h6>Date: @app.Date</h6>
+                        <h6>Time: @app.Time</h6>
+                        <h6>Duration: @app.Duration</h6>
+                    </div>
+                    <div>
+                        <button class="btn btn-app btn-outline-light btn-lg text-uppercase">Delete</button>
+                    </div>
+                </div>
+
+            }
+        }
+        else
+        {
+            <div>You Have No Avaiable Appointments</div>
+            <div>
+                <button>Add Available Appointment</button>
+            </div>
+        }
     }
-}
-else
-{
-    <div>You Have No Scheduled Appointments</div>
 
-}
-
-
-<h4>Completed Appointments</h4>
-@if (personalSupervisor!.CompletedAppointments.Count > 0)
-{
-    @foreach (var app in personalSupervisor!.CompletedAppointments)
+    @if (isScheduled)
     {
-        <div>
-            @app.AppointmentId
-            @app.Date
-            @app.Time
-            @app.Duration
-        </div>
+        <h6 class="app-heading">Scehduled Appointments</h6>
+        @if (personalSupervisor!.ScheduledAppointments.Count > 0)
+        {
+            @foreach (var app in personalSupervisor!.ScheduledAppointments)
+            {
+                <div class="studentBox">
+                    <div>
+                        <h6>Id: @app.AppointmentId</h6>
+                        <h6>Date: @app.Date</h6>
+                        <h6>Time: @app.Time</h6>
+                        <h6>Duration: @app.Duration</h6>
+                    </div>
+                    <div class="completion-btns">
+                        <button class="btn btn-app btn-outline-light btn-lg text-uppercase">Complete</button>
+                        <button class="btn btn-app btn-danger btn-outline-light btn-lg text-uppercase">Incomplete</button>
+                    </div>
+                </div>
+
+            }
+        }
+        else
+        {
+            <div>You Have No Scheduled Appointments</div>
+
+        }
     }
-}
-else
-{
-    <div>You Have No Completed Appointments</div>
 
-}
-
-
-<h4>Incomplete Appointments</h4>
-@if (personalSupervisor!.IncompleteAppointments.Count > 0)
-{
-    @foreach (var app in personalSupervisor!.IncompleteAppointments)
+    @if (isCompleted)
     {
-        <div>
-            @app.AppointmentId
-            @app.Date
-            @app.Time
-            @app.Duration
-        </div>
-    }
-}
-else
-{
-    <div>You Have No Incomplete Appointments</div>
+        <h4>Completed Appointments</h4>
+        @if (personalSupervisor!.CompletedAppointments.Count > 0)
+        {
+            @foreach (var app in personalSupervisor!.CompletedAppointments)
+            {
+                <div>
+                    @app.AppointmentId
+                    @app.Date
+                    @app.Time
+                    @app.Duration
+                </div>
+            }
+        }
+        else
+        {
+            <div>You Have No Completed Appointments</div>
 
-}
+        }
+    }
+
+    @if (isIncomplete)
+    {
+        <h4>Incomplete Appointments</h4>
+        @if (personalSupervisor!.IncompleteAppointments.Count > 0)
+        {
+            @foreach (var app in personalSupervisor!.IncompleteAppointments)
+            {
+                <div>
+                    @app.AppointmentId
+                    @app.Date
+                    @app.Time
+                    @app.Duration
+                </div>
+            }
+        }
+        else
+        {
+            <div>You Have No Incomplete Appointments</div>
+
+        }
+    }
+
+</div>
+
+
+
+
+
 
 
 
@@ -96,7 +140,11 @@ else
     [Parameter]
     public string? StaffNumber { get; set; }
 
-
+    private bool isAvailable;
+    private bool isScheduled;
+    private bool isCompleted;
+    private bool isIncomplete;
+    private bool IsUnselected;
     private List<SeniorTutorModel>? database;
     private PersonalSupervisorModel? personalSupervisor;
 
@@ -104,6 +152,24 @@ else
     {
         database = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         personalSupervisor = dataManager.GetPersonalSupervisor(StaffNumber!, database);
+        ResetView();
+        SelectView(ref isAvailable);
+
+    }
+
+    public void ResetView()
+    {
+        isAvailable = false;
+        isScheduled = false;
+        isCompleted = false;
+        isIncomplete = false;
+    }
+
+    public void SelectView(ref bool currentView)
+    {
+        ResetView();
+        currentView = true;
+
     }
 
 }

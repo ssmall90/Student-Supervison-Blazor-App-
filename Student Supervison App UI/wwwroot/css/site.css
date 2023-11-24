@@ -104,6 +104,31 @@ a, .btn-link {
 }
 
 
+.studentDetailsBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: ghostwhite;
+    margin-bottom: 10px;
+    padding: 10px 0px 0px 10px;
+    border: solid 5px;
+    border-color: navy;
+    border-radius: 20px;
+}
+
+.appointmentBox {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: ghostwhite;
+    margin-bottom: 10px;
+    padding: 10px 0px 0px 10px;
+    border: solid 5px;
+    border-color: navy;
+    border-radius: 20px;
+}
+
 .btn {
     font-family: 'Montserrat', sans-serif;
     background-color: #0151c2;
@@ -113,6 +138,18 @@ a, .btn-link {
     padding-right: 2rem;
     font-weight: 900;
 }
+
+.btn-app {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0151c2;
+    border-width: 3px;
+    border-radius: 10px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: 900;
+    font-size:1em;
+}
+
 
 .btn-outline-light:hover {
     color: #0151c2;
@@ -125,10 +162,64 @@ a, .btn-link {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 
+.app-btn-container{
+    display:flex;
+    justify-content: space-between;
+    max-width: 100vw;
+    background-color: ghostwhite;
+}
 
+.app-display-container {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: ghostwhite;
+    border: solid 5px;
+    border-color: navy;
+    border-radius: 15px;
+    min-height: 100px;
+}
+
+.app-heading{
+    color:navy;
+}
+
+.completion-btns{
+    display: flex;
+    flex-direction:column;
+}
+
+.btn-danger {
+    font-family: 'Montserrat', sans-serif;
+    background-color: firebrick;
+    border-width: 3px;
+    border-radius: 10px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: 900;
+    font-size: 1em;
+}
+
+.btn-danger:hover {
+    color: #0151c2;
+    background-color: ghostwhite;
+    border-color: #0151c2;
+}
+
+.welcome-header{
+    display:flex;
+    justify-content: space-between;
+}
+
+.welcome-header-scores {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    color: ghostwhite;
+}
 
 

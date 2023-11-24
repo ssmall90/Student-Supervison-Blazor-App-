@@ -7,34 +7,59 @@
 <h3>Details</h3>
 
 <h4>Student Details</h4>
-<div>
-    <h5>@student!.StudentNumber</h5>
-    <h5>@student!.FirstName @student.LastName</h5>
+<div class="studentDetailsBox">
+    <h6>@student!.StudentNumber</h6>
+    <h6>@student!.FirstName @student.LastName</h6>
 </div>
 
 <h4>Student Statuses</h4>
 @if(student.Statuses.Count > 0)
 {
-    <div>
+    <div class="studentDetailsBox">
         @foreach (var status in student.Statuses)
         {
             <div>
-                @status.ToString();
+                <h6>@status.ToString()</h6>
             </div>
         }
     </div>
 }
 else
 {
-    <div>
-        <h5>@student!.FirstName @student.LastName Has No Statuses</h5>
+    <div class="studentDetailsBox">
+        <h6>@student!.FirstName @student.LastName Has No Statuses</h6>
     </div>
 }
 
 <h4>Wellbeing Score</h4>
-<div>
-    <h5>@student!.WellbeingScore</h5>
+<div class="studentDetailsBox">
+    <h6>@student!.WellbeingScore</h6>
 </div>
+
+
+@if(appointments == false)
+{
+    <div class="manage-app-div">
+        <button @onclick="() => BookAppointmnet()" class="btn btn-outline-light btn-lg text-uppercase">Book Appointment</button>
+    </div>
+
+}
+
+@if(noAppointments)
+{
+    <h4>Unsuccessful</h4>
+    <div class="studentDetailsBox">
+        <h6>You Do Not Have Any Available Appointments. Please Add Availabilty</h6>
+    </div>
+}
+
+@if (appointments)
+{
+    <h4>Success</h4>
+    <div class="studentDetailsBox">
+        <h6>An Appointment with @student.FirstName has been booked for @student.PersonalSupervisor.AvailableAppointments[0].Time on the @student.PersonalSupervisor.AvailableAppointments[0].Date</h6>
+    </div>
+}
 
 
 @code {
@@ -45,13 +70,31 @@ else
     private List<SeniorTutorModel>? database;
     StudentModel? student;
 
-
+    bool noAppointments;
+    bool appointments;
 
     protected override void OnInitialized()
     {
         database = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber!,database);
+        appointments = false;
+        noAppointments = false;
 
     }
+
+    public void BookAppointmnet()
+    {
+        if(student!.PersonalSupervisor.AvailableAppointments.Count > 0)
+        {
+            dataManager.ScheduleAppointmentForSupervisor(student!.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.AvailableAppointments[0].AppointmentId, student.StudentNumber, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+            appointments = true;
+        }
+        else
+        {
+            noAppointments = true;
+        }
+    }
+
+
 
 }
