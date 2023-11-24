@@ -1,8 +1,25 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&display=swap');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
 }
+
+h1, h2, h3, h4, h5{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: ghostwhite;
+}
+
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: #0151c2;
+}
+
 
 body {
     background: url(../Images//Background.jpg) no-repeat center center fixed;
@@ -69,3 +86,49 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.pageTitle{
+    color: ghostwhite;
+}
+
+.studentBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: ghostwhite;
+    margin: 10px;
+    padding: 10px;
+    border: solid 5px;
+    border-color: navy;
+    border-radius: 20px;
+}
+
+
+.btn {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0151c2;
+    border-width: 3px;
+    border-radius: 10px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: 900;
+}
+
+.btn-outline-light:hover {
+    color: #0151c2;
+    background-color: ghostwhite;
+    border-color: #0151c2;
+}
+
+.manage-app-div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+

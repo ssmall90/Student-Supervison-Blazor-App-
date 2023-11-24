@@ -5,19 +5,30 @@
 
 @page "/SupervisorHomePage/{StaffNumber}"
 
-<h3>Welcome @supervisor!.FirstName</h3>
+<h3 class="pageTitle" >Welcome @supervisor!.FirstName</h3>
 
 @foreach(var student in supervisor!.Students)
 {
-    <div>
-        <h4>Student Number: @student.StudentNumber</h4>
-        <h4>Name: @student.FirstName @student.LastName</h4>
-        <h4>Wellbeing Score: @student.WellbeingScore</h4>
-        <button @onclick="() => OpenDetails(student)">View Profile</button>
+    <div class="studentBox">
+        <div class="studentBoxInfo">
+            <h6>Student Number: @student.StudentNumber</h6>
+            <h6>Name: @student.FirstName @student.LastName</h6>
+            <h6>Wellbeing Score: @student.WellbeingScore</h6>
+        </div>
+        <div class="ButtonBox">
+            <button class="btn btn-outline-light btn-lg text-uppercase" @onclick="() => OpenDetails(student)">View Profile</button>
+        </div>
     </div>
 }
 
-<button @onclick="() => OpenAppointmnets(supervisor)">Manage Appointments</button>
+
+<div class="manage-app-div">
+    <button class="btn btn-outline-light btn-lg text-uppercase" @onclick="() => OpenAppointmnets(supervisor)">Manage Appointments</button>
+</div>
+
+
+
+
 
 
 
