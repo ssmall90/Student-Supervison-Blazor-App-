@@ -129,6 +129,21 @@ a, .btn-link {
     border-radius: 20px;
 }
 
+.statusBox {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: ghostwhite;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 10px;
+    border: solid 5px;
+    border-color: navy;
+    border-radius: 20px;
+}
+
+
 .noAppointmentBox {
     font-family: 'Montserrat', sans-serif;
     display: flex;
@@ -189,6 +204,7 @@ a, .btn-link {
 .app-display-container {
     font-family: 'Montserrat', sans-serif;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 10px;
     background-color: ghostwhite;
     border: solid 5px;
@@ -201,9 +217,14 @@ a, .btn-link {
     color:navy;
 }
 
-.completion-btns{
+.status-header-text{
+    color:navy;
+    align-self:center;
+}
+
+.completion-btns {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 .btn-danger {
@@ -244,6 +265,21 @@ a, .btn-link {
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.form-group-button-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: max-content;
+
+}
+
+
+.student-homepage-button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top:20px;
 }
 
 

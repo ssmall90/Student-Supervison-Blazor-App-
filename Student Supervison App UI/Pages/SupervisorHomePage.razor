@@ -43,24 +43,18 @@
 
 
 
-
-
-
-
 @code {
 
     [Parameter]
     public string? StaffNumber { get; set;}
 
     private List<SeniorTutorModel>? seniorTutors;
-    private List<PersonalSupervisorModel>? personalSupervisors;
-    PersonalSupervisorModel? supervisor;
+    private PersonalSupervisorModel? supervisor;
 
     protected override void OnInitialized()
     {
         seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
-        personalSupervisors = seniorTutors[0].PersonalSupervisors;
-        supervisor = personalSupervisors.FirstOrDefault(s => s.StaffNumber == StaffNumber);
+        supervisor = dataManager.GetPersonalSupervisor(StaffNumber!,seniorTutors);
     }
 
     private void OpenDetails(StudentModel student)

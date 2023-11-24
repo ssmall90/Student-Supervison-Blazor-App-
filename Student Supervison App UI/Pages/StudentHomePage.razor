@@ -1,0 +1,99 @@
+﻿@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Factory;
+@using Student_Supervisor_Logic.Models;
+@inject IDataManager dataManager
+@inject NavigationManager navManager
+
+
+@page "/StudentHomePage/{StudentNumber}"
+
+
+<div class="welcome-header">
+    <div>
+        <h3 class="pageTitle">Welcome @student!.FirstName</h3>
+    </div>
+    <div class="welcome-header-scores">
+        <div>
+            <span>Student Id: @student.StudentNumber</span>
+        </div>
+        <div>
+            <span>Wellbeing Score: @student.WellbeingScore</span>
+        </div>
+    </div>
+</div>
+
+<div class="student-homepage-button-container">
+
+    <div class="ButtonBox">
+        <button @onclick="() => AddNewStatus(student.StudentNumber)" class="btn btn-outline-light btn-lg text-uppercase">Add New Status</button>
+    </div>
+    <div class="ButtonBox">
+        <button class="btn btn-outline-light btn-lg text-uppercase">Book Appointment</button>
+    </div>
+</div>
+
+<div class="app-display-container">
+
+    <h4 class="status-header-text">Recent Statuses</h4>
+
+    @if (student.Statuses.Count > 0)
+    {
+
+        @foreach (var status in student!.Statuses)
+        {
+            <div class="studentBox">
+                <div class="studentBoxInfo">
+                    <h6>Status Id: @status.StatusId</h6>
+                    <h6>Upload Date: @status.StatusDate</h6>
+                    <h6>Comments: @status.StatusComments</h6>
+                    <h6>Score: @status.StatusScore</h6>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="studentBox">
+            <h6>You Do Not Have Any Statuses</h6>
+            <div class="ButtonBox">
+                <button class="btn btn-outline-light btn-lg text-uppercase">Add New Status</button>
+            </div>
+        </div>
+    }
+
+
+
+</div>
+
+
+
+
+@code {
+    [Parameter]
+    public string? StudentNumber { get; set; }
+
+    private List<SeniorTutorModel>? seniorTutors;
+    private PersonalSupervisorModel? supervisor;
+    private StudentModel? student;
+
+    private bool moreThanTwo;
+
+
+    protected override void OnInitialized()
+    {
+        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber!,seniorTutors);
+
+    }
+
+    public void AddNewStatus(string StudentNumber)
+    {
+        navManager.NavigateTo($"/AddStatusPage/{StudentNumber}");
+    }
+
+
+
+
+
+
+}

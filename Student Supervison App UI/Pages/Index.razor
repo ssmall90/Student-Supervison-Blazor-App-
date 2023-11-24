@@ -4,27 +4,100 @@
 @inject IDataManager dataManager
 @inject NavigationManager navManager
 
-<h2>Supervisor Home Page</h2>
-@foreach(var s in personalSupervisors!)
+<h2>Log In Page</h2>
+
+<form>
+    <div>
+        <label>Enter Student Number or Staff Number</label>
+        <input type="text" class="form-control" @bind="loginDetails" />
+    </div>
+</form>
+<div>
+    <button @onclick="() => LogUserIn(loginDetails)" class="btn btn-app btn-outline-light btn-lg text-uppercase">
+        Confirm
+    </button>
+</div>
+<div>
+
+</div>
+
+@if(isValid == false)
 {
-    <h2>@s.StaffNumber</h2>
-    <h2>@s.FirstName @s.LastName</h2>
-    <button @onclick="() => OpenDetails(s)">Sign In</button>
+    <div class="appointmentBox">
+        <span>User Details Not Valid. Please Try Again</span>
+    </div>
 }
+
+
+
 
 @code
 {
+    private string? loginDetails;
     private List<SeniorTutorModel>? seniorTutors;
-    private List<PersonalSupervisorModel>? personalSupervisors;
+
+
+    private StudentModel student;
+    private PersonalSupervisorModel personalSupervisor;
+    private SeniorTutorModel seniorTutor;
+    private bool isValid;
+
 
     protected override void OnInitialized()
     {
         seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
-        personalSupervisors = seniorTutors[0].PersonalSupervisors;
+        dataManager.CurrentData = seniorTutors;
+        isValid = true;
+
     }
-    private void OpenDetails(PersonalSupervisorModel personalSupervisor)
+
+
+    private void LogUserIn(string userNumber)
     {
-        navManager.NavigateTo($"/SupervisorHomePage/{personalSupervisor.StaffNumber}");
+        if (userNumber.ToUpper().Contains("ST"))
+        {
+            student = dataManager.GetStudentAndAssignPersonalSupervisor(userNumber.ToUpper(), seniorTutors!);
+            if (student != null)
+            {
+                OpenStudentDetails(student.StudentNumber);
+            }
+            else
+            {
+                isValid = false;
+            }
+        }
+        else if (userNumber.ToUpper().Contains("PS"))
+        {
+            personalSupervisor = dataManager.GetPersonalSupervisor(userNumber.ToUpper(), seniorTutors!);
+            if (personalSupervisor != null)
+            {
+                OpenDetails(personalSupervisor.StaffNumber);
+            }
+            else
+            {
+                isValid = false;
+            }
+        }
+        else if (userNumber.ToUpper().Contains("SN"))
+        {
+            seniorTutor = dataManager.GetSeniorTutor(userNumber.ToUpper(), seniorTutors!);
+            // Logic for senior tutor...
+        }
+        else
+        {
+            isValid = false;
+        }
+
+    }
+
+    private void OpenDetails(string StaffNumber)
+    {
+        navManager.NavigateTo($"/SupervisorHomePage/{StaffNumber}");
+    }
+
+    private void OpenStudentDetails(string StudentNumber)
+    {
+        navManager.NavigateTo($"/StudentHomePage/{StudentNumber}");
     }
 
 

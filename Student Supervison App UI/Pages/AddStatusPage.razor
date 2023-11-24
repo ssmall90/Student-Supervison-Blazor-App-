@@ -1,0 +1,106 @@
+﻿@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Factory;
+@using Student_Supervisor_Logic.Models;
+@inject IDataManager dataManager
+@inject NavigationManager navManager
+
+@page "/AddStatusPage/{StudentNumber}"
+
+<h3>AddStatusPage</h3>
+
+<div class="status-display-container">
+<h6>Add New Status</h6>
+
+<form>
+    <div class="form-group">
+        <label>How well are you coping with your studies?:</label>
+        <input type="number" max="10" min="1" class="form-control" @bind="studiesScore">
+    </div>
+    <div class="form-group">
+        <label>How confident are you that you can get support if you need it?:</label>
+        <input type="number" max="10" min="1" class="form-control" @bind="supportScore">
+    </div>
+    <div class="form-group">
+        <label>How well are you feeling physically and emotionally?:</label>
+        <input type="number" max="10" min="1" class="form-control" @bind="wellbeingScore">
+    </div>
+    <div class="form-group">
+        <label>Add any addition comments here.:</label>
+        <input type="text" max="200" min="0" class="form-control" @bind="statusComments">
+    </div>
+</form>
+
+</div>
+
+@if (hasAdded == false)
+{
+    <div class="student-homepage-button-container">
+        <div class="form-group-button-status">
+            <button @onclick="() => ConfirmStatus(studiesScore,supportScore,wellbeingScore,statusComments) " class="btn btn-app btn-outline-light btn-lg text-uppercase">
+                Confirm
+            </button>
+        </div>
+        <div class="form-group-button-status">
+            <button @onclick="() => ClosePage(student!.StudentNumber) " class="btn btn-app btn-outline-light btn-lg text-uppercase">
+                Cancel
+            </button>
+        </div>
+    </div>
+}
+@if (hasAdded)
+{
+    <div class="statusBox">
+        <h6>Thank You Your Status Has Been Updated</h6>
+        <div class="form-group-button-status">
+            <button @onclick="() => ClosePage(student!.StudentNumber) " class="btn btn-app btn-outline-light btn-lg text-uppercase">
+                Return To Home Page
+            </button>
+        </div>
+    </div>
+}
+
+
+
+
+
+@code {
+
+    [Parameter]
+    public string? StudentNumber { get; set; }
+
+    private List<SeniorTutorModel>? seniorTutors;
+    private PersonalSupervisorModel? supervisor;
+    private StudentModel? student;
+
+    private bool hasAdded;
+
+    private int studiesScore;
+    private int supportScore;
+    private int wellbeingScore;
+    private string? statusComments;
+
+    protected override void OnInitialized()
+    {
+        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber, seniorTutors);
+        hasAdded = false;
+    }
+
+    public void ConfirmStatus(int studyScore, int supportScore, int overallScore, string comments)
+    {
+
+            int score = studiesScore + supportScore + wellbeingScore;
+            StatusModel newStatus = ModelFactory.CreateStatus(statusComments ?? string.Empty, score);
+            student!.Statuses.Add(newStatus);
+            dataManager.AppendStatusToStudentInXml(StudentNumber!, newStatus, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+            hasAdded = true;
+    }
+
+    private void ClosePage(string StudentNumber)
+    {
+
+        navManager.NavigateTo($"/StudentHomePage/{StudentNumber}");
+    }
+
+
+}
