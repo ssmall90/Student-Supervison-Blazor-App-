@@ -70,7 +70,22 @@
           <StudentAttending>ST001</StudentAttending>
         </AppointmentModel>
       </ScheduledAppointments>
-      <AvailableAppointments />
+      <AvailableAppointments>
+        <AppointmentModel>
+          <AppointmentId>APP-19</AppointmentId>
+          <Date>01/01/0001</Date>
+          <Time>00:00</Time>
+          <Duration>0</Duration>
+          <StudentAttending></StudentAttending>
+        </AppointmentModel>
+        <AppointmentModel>
+          <AppointmentId>APP-20</AppointmentId>
+          <Date>01/01/0001</Date>
+          <Time>00:00</Time>
+          <Duration>0</Duration>
+          <StudentAttending></StudentAttending>
+        </AppointmentModel>
+      </AvailableAppointments>
       <CompletedAppointments />
       <IncompleteAppointments />
     </PersonalSupervisorModel>

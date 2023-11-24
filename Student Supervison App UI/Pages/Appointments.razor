@@ -1,4 +1,5 @@
 ﻿@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Factory;
 @using Student_Supervisor_Logic.Models;
 @inject IDataManager dataManager
 @inject NavigationManager navManager
@@ -43,13 +44,22 @@
                 </div>
 
             }
+            <div class ="form-group-button">
+                <button @onclick="() => AddAvailableAppointment(ref isAppointment)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Add Available Appointment</button>
+            </div>
         }
         else
         {
-            <div>You Have No Avaiable Appointments</div>
-            <div>
-                <button>Add Available Appointment</button>
+            <div class="noAppointmentBox">
+                <div>
+                    <span>You Have No Available Appointments</span>
+                </div>
+
+                <div>
+                    <button @onclick="() => AddAvailableAppointment(ref isAppointment)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Add Available Appointment</button>
+                </div>
             </div>
+
         }
     }
 
@@ -84,7 +94,7 @@
 
     @if (isCompleted)
     {
-        <h4>Completed Appointments</h4>
+        <h6>Completed Appointments</h6>
         @if (personalSupervisor!.CompletedAppointments.Count > 0)
         {
             @foreach (var app in personalSupervisor!.CompletedAppointments)
@@ -106,7 +116,7 @@
 
     @if (isIncomplete)
     {
-        <h4>Incomplete Appointments</h4>
+        <h6>Incomplete Appointments</h6>
         @if (personalSupervisor!.IncompleteAppointments.Count > 0)
         {
             @foreach (var app in personalSupervisor!.IncompleteAppointments)
@@ -124,6 +134,32 @@
             <div>You Have No Incomplete Appointments</div>
 
         }
+    }
+
+    @if (isAppointment)
+    {
+        <h6>Add New Appointment</h6>
+
+        <form>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" class="form-control" @bind="appointmentDate">
+            </div>
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="time" class="form-control" @bind="appointmentTime">
+            </div>
+            <div class="form-group">
+                <label>Duration In Minutes:</label>
+                <input type="number" class="form-control" @bind="durationInMinutes">
+            </div>
+            <div class="form-group-button">
+                <button @onclick="() => ConfirmNewAppointment(appointmentDate.ToString(),appointmentTime.ToString(),durationInMinutes.ToString()) " class="btn btn-app btn-outline-light btn-lg text-uppercase">
+                    Confirm
+                </button>
+            </div>
+
+        </form>
     }
 
 </div>
@@ -144,9 +180,13 @@
     private bool isScheduled;
     private bool isCompleted;
     private bool isIncomplete;
-    private bool IsUnselected;
+    private bool isAppointment;
     private List<SeniorTutorModel>? database;
     private PersonalSupervisorModel? personalSupervisor;
+
+    private DateOnly appointmentDate;
+    private TimeOnly appointmentTime;
+    private int durationInMinutes;
 
     protected override void OnInitialized()
     {
@@ -163,12 +203,37 @@
         isScheduled = false;
         isCompleted = false;
         isIncomplete = false;
+        isAppointment = false;
+
     }
 
     public void SelectView(ref bool currentView)
     {
         ResetView();
         currentView = true;
+
+    }
+
+    public void AddAvailableAppointment(ref bool currentView)
+    {
+        ResetView();
+        currentView = true;
+    }
+
+    public void ConfirmNewAppointment(string date, string time, string duration)
+    {
+        try
+        {
+            AppointmentModel newAppointment = ModelFactory.CreateAppointment(date, time, duration);
+            personalSupervisor!.AvailableAppointments.Add(newAppointment);
+            dataManager.AppendAppointmentToAvailableAppointmentsXml(StaffNumber!, newAppointment, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+            SelectView(ref isAvailable);
+
+        }
+        catch
+        {
+            SelectView(ref isAvailable);
+        }
 
     }
 
