@@ -1,0 +1,109 @@
+﻿@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Models;
+@inject IDataManager dataManager
+@inject NavigationManager navManager
+
+@page "/Appointments/{StaffNumber}"
+
+<h3>Appointments</h3>
+
+
+<h4>Available Appointments</h4>
+@if(personalSupervisor!.AvailableAppointments.Count > 0)
+{
+    @foreach (var app in personalSupervisor!.AvailableAppointments)
+    {
+        <div>
+            @app.AppointmentId
+            @app.Date
+            @app.Time
+            @app.Duration
+        </div>
+    }
+}
+else
+{
+    <div>You Have No Avaiable Appointments</div>
+    <div>
+        <button>Add Available Appointment</button>
+    </div>
+}
+
+
+<h4>Scheduled Appointments</h4>
+@if (personalSupervisor!.ScheduledAppointments.Count > 0)
+{
+    @foreach (var app in personalSupervisor!.ScheduledAppointments)
+    {
+        <div>
+            @app.AppointmentId
+            @app.Date
+            @app.Time
+            @app.Duration
+        </div>
+    }
+}
+else
+{
+    <div>You Have No Scheduled Appointments</div>
+
+}
+
+
+<h4>Completed Appointments</h4>
+@if (personalSupervisor!.CompletedAppointments.Count > 0)
+{
+    @foreach (var app in personalSupervisor!.CompletedAppointments)
+    {
+        <div>
+            @app.AppointmentId
+            @app.Date
+            @app.Time
+            @app.Duration
+        </div>
+    }
+}
+else
+{
+    <div>You Have No Completed Appointments</div>
+
+}
+
+
+<h4>Incomplete Appointments</h4>
+@if (personalSupervisor!.IncompleteAppointments.Count > 0)
+{
+    @foreach (var app in personalSupervisor!.IncompleteAppointments)
+    {
+        <div>
+            @app.AppointmentId
+            @app.Date
+            @app.Time
+            @app.Duration
+        </div>
+    }
+}
+else
+{
+    <div>You Have No Incomplete Appointments</div>
+
+}
+
+
+
+
+@code {
+    [Parameter]
+    public string? StaffNumber { get; set; }
+
+
+    private List<SeniorTutorModel>? database;
+    private PersonalSupervisorModel? personalSupervisor;
+
+    protected override void OnInitialized()
+    {
+        database = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        personalSupervisor = dataManager.GetPersonalSupervisor(StaffNumber!, database);
+    }
+
+}

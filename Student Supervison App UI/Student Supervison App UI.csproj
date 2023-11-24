@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Student Supervison App Library\Student Supervison App Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
 </Project>

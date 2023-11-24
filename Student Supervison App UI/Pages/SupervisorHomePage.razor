@@ -3,9 +3,9 @@
 @inject IDataManager dataManager
 @inject NavigationManager navManager
 
-@page "/SupervisorHomePage"
+@page "/SupervisorHomePage/{StaffNumber}"
 
-<h3>SupervisorHomePage</h3>
+<h3>Welcome @supervisor!.FirstName</h3>
 
 @foreach(var student in supervisor!.Students)
 {
@@ -17,11 +17,16 @@
     </div>
 }
 
+<button @onclick="() => OpenAppointmnets(supervisor)">Manage Appointments</button>
 
 
 
 
 @code {
+
+    [Parameter]
+    public string? StaffNumber { get; set;}
+
     private List<SeniorTutorModel>? seniorTutors;
     private List<PersonalSupervisorModel>? personalSupervisors;
     PersonalSupervisorModel? supervisor;
@@ -30,11 +35,17 @@
     {
         seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         personalSupervisors = seniorTutors[0].PersonalSupervisors;
-        supervisor = personalSupervisors[0];
+        supervisor = personalSupervisors.FirstOrDefault(s => s.StaffNumber == StaffNumber);
     }
 
     private void OpenDetails(StudentModel student)
     {
         navManager.NavigateTo($"/Details/{student.StudentNumber}");
+    }
+
+
+    private void OpenAppointmnets(PersonalSupervisorModel personalSupervisor)
+    {
+        navManager.NavigateTo($"/Appointments/{personalSupervisor.StaffNumber}");
     }
 }

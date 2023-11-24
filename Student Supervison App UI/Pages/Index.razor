@@ -8,6 +8,8 @@
 @foreach(var s in personalSupervisors!)
 {
     <h2>@s.StaffNumber</h2>
+    <h2>@s.FirstName @s.LastName</h2>
+    <button @onclick="() => OpenDetails(s)">Sign In</button>
 }
 
 @code
@@ -20,5 +22,10 @@
         seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         personalSupervisors = seniorTutors[0].PersonalSupervisors;
     }
+    private void OpenDetails(PersonalSupervisorModel personalSupervisor)
+    {
+        navManager.NavigateTo($"/SupervisorHomePage/{personalSupervisor.StaffNumber}");
+    }
+
 
 }
