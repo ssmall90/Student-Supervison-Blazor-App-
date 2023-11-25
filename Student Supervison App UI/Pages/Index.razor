@@ -7,16 +7,15 @@
 
 <h2>Log In Page</h2>
 
-<h2>@filePath</h2>
 <form>
     <div>
         <label class="label-text">Enter Student Number or Staff Number</label>
         <input type="text" class="form-control" @bind="loginDetails" />
     </div>
 </form>
-<div>
+<div class="signInBox">
     <button @onclick="() => LogUserIn(loginDetails)" class="btn btn-app btn-outline-light btn-lg text-uppercase">
-        Confirm
+        Sign In
     </button>
 </div>
 

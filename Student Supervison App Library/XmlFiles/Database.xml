@@ -1,226 +1,150 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <SeniorTutorModel>
-  <FirstName>Senior</FirstName>
-  <LastName>Tutor</LastName>
-  <StaffNumber>SN001</StaffNumber>
-  <Email>senior@example.com</Email>
-  <PersonalSupervisors>
-    <PersonalSupervisorModel>
-      <StaffNumber>PS001</StaffNumber>
-      <FirstName>Alice</FirstName>
-      <LastName>Smith</LastName>
-      <Email>alice@example.com</Email>
-      <InteractionScore>70</InteractionScore>
-      <StudentWellBeingAverage>4</StudentWellBeingAverage>
-      <Students>
-        <StudentModel>
-          <StudentNumber>ST001</StudentNumber>
-          <FirstName>Paul</FirstName>
-          <LastName>Davis</LastName>
-          <Email>paul@example.com</Email>
-          <WellbeingScore>8</WellbeingScore>
-          <Statuses>
-            <StatusModel>
-              <StatusId>STAT-00119</StatusId>
-              <StatusDate>2023-11-25</StatusDate>
-              <StatusComments>N/A</StatusComments>
-              <StatusScore>17</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00120</StatusId>
-              <StatusDate>2023-11-25</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>0</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00121</StatusId>
-              <StatusDate>2023-11-25</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>0</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00122</StatusId>
-              <StatusDate>2023-11-25</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>2</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00123</StatusId>
-              <StatusDate>2023-11-25</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>0</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00124</StatusId>
-              <StatusDate>2023-11-25</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>0</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00125</StatusId>
-              <StatusDate>2023-11-25</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>0</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00126</StatusId>
-              <StatusDate>25/11/2023</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>9</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00127</StatusId>
-              <StatusDate>25/11/2023</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>0</StatusScore>
-            </StatusModel>
-            <StatusModel>
-              <StatusId>STAT-00128</StatusId>
-              <StatusDate>25/11/2023</StatusDate>
-              <StatusComments></StatusComments>
-              <StatusScore>8</StatusScore>
-            </StatusModel>
-          </Statuses>
-          <ScheduledAppointments />
-        </StudentModel>
-        <StudentModel>
-          <StudentNumber>ST002</StudentNumber>
-          <FirstName>Steven</FirstName>
-          <LastName>Lomas</LastName>
-          <Email>ste@example.com</Email>
-          <WellbeingScore>0</WellbeingScore>
-          <Statuses />
-          <ScheduledAppointments />
-        </StudentModel>
-      </Students>
-      <ScheduledAppointments />
-      <AvailableAppointments />
-      <CompletedAppointments>
-        <AppointmentModel>
-          <AppointmentId>App-1</AppointmentId>
-          <Date>22/11/2023</Date>
-          <Time>13:00</Time>
-          <Duration>1 Hour</Duration>
-          <StudentAttending>ST001</StudentAttending>
-        </AppointmentModel>
-        <AppointmentModel>
-          <AppointmentId>App-2</AppointmentId>
-          <Date>23/11/2023</Date>
-          <Time>14:00</Time>
-          <Duration>1 Hour</Duration>
-          <StudentAttending>ST001</StudentAttending>
-        </AppointmentModel>
-        <AppointmentModel>
-          <AppointmentId>APP-65</AppointmentId>
-          <Date>01/01/0001</Date>
-          <Time>00:00</Time>
-          <Duration>0</Duration>
-          <StudentAttending>ST001</StudentAttending>
-        </AppointmentModel>
-      </CompletedAppointments>
-      <IncompleteAppointments>
-        <AppointmentModel>
-          <AppointmentId>APP-67</AppointmentId>
-          <Date>04/03/0045</Date>
-          <Time>03:04</Time>
-          <Duration>0</Duration>
-          <StudentAttending>ST002</StudentAttending>
-        </AppointmentModel>
-      </IncompleteAppointments>
-    </PersonalSupervisorModel>
-    <PersonalSupervisorModel>
-      <StaffNumber>PS002</StaffNumber>
-      <FirstName>Bob</FirstName>
-      <LastName>Wilson</LastName>
-      <Email>bob@example.com</Email>
-      <InteractionScore>0</InteractionScore>
-      <StudentWellBeingAverage>0</StudentWellBeingAverage>
-      <Students>
-        <StudentModel>
-          <StudentNumber>ST003</StudentNumber>
-          <FirstName>Andrew</FirstName>
-          <LastName>Smith</LastName>
-          <Email>andrew@example.com</Email>
-          <WellbeingScore>0</WellbeingScore>
-          <Statuses />
-          <ScheduledAppointments />
-        </StudentModel>
-        <StudentModel>
-          <StudentNumber>ST004</StudentNumber>
-          <FirstName>William</FirstName>
-          <LastName>Wilson</LastName>
-          <Email>will@example.com</Email>
-          <WellbeingScore>0</WellbeingScore>
-          <Statuses />
-          <ScheduledAppointments />
-        </StudentModel>
-      </Students>
-      <ScheduledAppointments />
-      <AvailableAppointments>
-        <AppointmentModel>
-          <AppointmentId>App-3</AppointmentId>
-          <Date>12/11/2023</Date>
-          <Time>15:00</Time>
-          <Duration>1 Hour</Duration>
-          <StudentAttending />
-        </AppointmentModel>
-        <AppointmentModel>
-          <AppointmentId>App-4</AppointmentId>
-          <Date>13/11/2023</Date>
-          <Time>17:00</Time>
-          <Duration>1 Hour</Duration>
-          <StudentAttending />
-        </AppointmentModel>
-      </AvailableAppointments>
-      <CompletedAppointments />
-      <IncompleteAppointments />
-    </PersonalSupervisorModel>
-    <PersonalSupervisorModel>
-      <StaffNumber>PS003</StaffNumber>
-      <FirstName>Carol</FirstName>
-      <LastName>Adams</LastName>
-      <Email>carol@example.com</Email>
-      <InteractionScore>0</InteractionScore>
-      <StudentWellBeingAverage>0</StudentWellBeingAverage>
-      <Students>
-        <StudentModel>
-          <StudentNumber>ST005</StudentNumber>
-          <FirstName>David</FirstName>
-          <LastName>Johnson</LastName>
-          <Email>david@example.com</Email>
-          <WellbeingScore>0</WellbeingScore>
-          <Statuses />
-          <ScheduledAppointments />
-        </StudentModel>
-        <StudentModel>
-          <StudentNumber>ST006</StudentNumber>
-          <FirstName>Eve</FirstName>
-          <LastName>Thompson</LastName>
-          <Email>eve@example.com</Email>
-          <WellbeingScore>0</WellbeingScore>
-          <Statuses />
-          <ScheduledAppointments />
-        </StudentModel>
-      </Students>
-      <ScheduledAppointments />
-      <AvailableAppointments>
-        <AppointmentModel>
-          <AppointmentId>App-5</AppointmentId>
-          <Date>29/11/2023</Date>
-          <Time>15:30</Time>
-          <Duration>1 Hour</Duration>
-          <StudentAttending />
-        </AppointmentModel>
-        <AppointmentModel>
-          <AppointmentId>App-6</AppointmentId>
-          <Date>30/11/2023</Date>
-          <Time>17:15</Time>
-          <Duration>1 Hour</Duration>
-          <StudentAttending />
-        </AppointmentModel>
-      </AvailableAppointments>
-      <CompletedAppointments />
-      <IncompleteAppointments />
-    </PersonalSupervisorModel>
-  </PersonalSupervisors>
+	<FirstName>Senior</FirstName>
+	<LastName>Tutor</LastName>
+	<StaffNumber>SN001</StaffNumber>
+	<Email>senior@example.com</Email>
+	<PersonalSupervisors>
+		<PersonalSupervisorModel>
+			<StaffNumber>PS001</StaffNumber>
+			<FirstName>Alice</FirstName>
+			<LastName>Smith</LastName>
+			<Email>alice@example.com</Email>
+			<InteractionScore>0</InteractionScore>
+			<StudentWellBeingAverage>0</StudentWellBeingAverage>
+			<Students>
+				<StudentModel>
+					<StudentNumber>ST001</StudentNumber>
+					<FirstName>Paul</FirstName>
+					<LastName>Davis</LastName>
+					<Email>paul@example.com</Email>
+					<WellbeingScore>0</WellbeingScore>
+					<Statuses />
+					<ScheduledAppointments />
+				</StudentModel>
+				<StudentModel>
+					<StudentNumber>ST002</StudentNumber>
+					<FirstName>Steven</FirstName>
+					<LastName>Lomas</LastName>
+					<Email>ste@example.com</Email>
+					<WellbeingScore>0</WellbeingScore>
+					<Statuses />
+					<ScheduledAppointments />
+				</StudentModel>
+			</Students>
+			<ScheduledAppointments />
+			<AvailableAppointments>
+				<AppointmentModel>
+					<AppointmentId>App-1</AppointmentId>
+					<Date>22/11/2023</Date>
+					<Time>13:00</Time>
+					<Duration>1 Hour</Duration>
+					<StudentAttending />
+				</AppointmentModel>
+				<AppointmentModel>
+					<AppointmentId>App-2</AppointmentId>
+					<Date>23/11/2023</Date>
+					<Time>14:00</Time>
+					<Duration>1 Hour</Duration>
+					<StudentAttending />
+				</AppointmentModel>
+			</AvailableAppointments>
+			<CompletedAppointments />
+			<IncompleteAppointments />
+		</PersonalSupervisorModel>
+		<PersonalSupervisorModel>
+			<StaffNumber>PS002</StaffNumber>
+			<FirstName>Bob</FirstName>
+			<LastName>Wilson</LastName>
+			<Email>bob@example.com</Email>
+			<InteractionScore>0</InteractionScore>
+			<StudentWellBeingAverage>0</StudentWellBeingAverage>
+			<Students>
+				<StudentModel>
+					<StudentNumber>ST003</StudentNumber>
+					<FirstName>Andrew</FirstName>
+					<LastName>Smith</LastName>
+					<Email>andrew@example.com</Email>
+					<WellbeingScore>0</WellbeingScore>
+					<Statuses />
+					<ScheduledAppointments />
+				</StudentModel>
+				<StudentModel>
+					<StudentNumber>ST004</StudentNumber>
+					<FirstName>William</FirstName>
+					<LastName>Wilson</LastName>
+					<Email>will@example.com</Email>
+					<WellbeingScore>0</WellbeingScore>
+					<Statuses />
+					<ScheduledAppointments />
+				</StudentModel>
+			</Students>
+			<ScheduledAppointments />
+			<AvailableAppointments>
+				<AppointmentModel>
+					<AppointmentId>App-3</AppointmentId>
+					<Date>12/11/2023</Date>
+					<Time>15:00</Time>
+					<Duration>1 Hour</Duration>
+					<StudentAttending />
+				</AppointmentModel>
+				<AppointmentModel>
+					<AppointmentId>App-4</AppointmentId>
+					<Date>13/11/2023</Date>
+					<Time>17:00</Time>
+					<Duration>1 Hour</Duration>
+					<StudentAttending />
+				</AppointmentModel>
+			</AvailableAppointments>
+			<CompletedAppointments />
+			<IncompleteAppointments />
+		</PersonalSupervisorModel>
+		<PersonalSupervisorModel>
+			<StaffNumber>PS003</StaffNumber>
+			<FirstName>Carol</FirstName>
+			<LastName>Adams</LastName>
+			<Email>carol@example.com</Email>
+			<InteractionScore>0</InteractionScore>
+			<StudentWellBeingAverage>0</StudentWellBeingAverage>
+			<Students>
+				<StudentModel>
+					<StudentNumber>ST005</StudentNumber>
+					<FirstName>David</FirstName>
+					<LastName>Johnson</LastName>
+					<Email>david@example.com</Email>
+					<WellbeingScore>0</WellbeingScore>
+					<Statuses />
+					<ScheduledAppointments />
+				</StudentModel>
+				<StudentModel>
+					<StudentNumber>ST006</StudentNumber>
+					<FirstName>Eve</FirstName>
+					<LastName>Thompson</LastName>
+					<Email>eve@example.com</Email>
+					<WellbeingScore>0</WellbeingScore>
+					<Statuses />
+					<ScheduledAppointments />
+				</StudentModel>
+			</Students>
+			<ScheduledAppointments />
+			<AvailableAppointments>
+				<AppointmentModel>
+					<AppointmentId>App-5</AppointmentId>
+					<Date>29/11/2023</Date>
+					<Time>15:30</Time>
+					<Duration>1 Hour</Duration>
+					<StudentAttending />
+				</AppointmentModel>
+				<AppointmentModel>
+					<AppointmentId>App-6</AppointmentId>
+					<Date>30/11/2023</Date>
+					<Time>17:15</Time>
+					<Duration>1 Hour</Duration>
+					<StudentAttending />
+				</AppointmentModel>
+			</AvailableAppointments>
+			<CompletedAppointments />
+			<IncompleteAppointments />
+		</PersonalSupervisorModel>
+	</PersonalSupervisors>
 </SeniorTutorModel>

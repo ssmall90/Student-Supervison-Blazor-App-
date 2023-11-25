@@ -97,6 +97,13 @@ a, .btn-link {
     color:ghostwhite;
 }
 
+.signInBox{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
 
 .studentBox {
     display: flex;
@@ -108,7 +115,6 @@ a, .btn-link {
     border: solid 5px;
     border-color: navy;
     border-radius: 20px;
-
 }
 
 .page-container{
