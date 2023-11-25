@@ -10,15 +10,15 @@
       <FirstName>Alice</FirstName>
       <LastName>Smith</LastName>
       <Email>alice@example.com</Email>
-      <InteractionScore>50</InteractionScore>
-      <StudentWellBeingAverage>0</StudentWellBeingAverage>
+      <InteractionScore>70</InteractionScore>
+      <StudentWellBeingAverage>4</StudentWellBeingAverage>
       <Students>
         <StudentModel>
           <StudentNumber>ST001</StudentNumber>
           <FirstName>Paul</FirstName>
           <LastName>Davis</LastName>
           <Email>paul@example.com</Email>
-          <WellbeingScore>0</WellbeingScore>
+          <WellbeingScore>9</WellbeingScore>
           <Statuses>
             <StatusModel>
               <StatusId>STAT-00119</StatusId>
@@ -62,6 +62,12 @@
               <StatusComments></StatusComments>
               <StatusScore>0</StatusScore>
             </StatusModel>
+            <StatusModel>
+              <StatusId>STAT-00126</StatusId>
+              <StatusDate>25/11/2023</StatusDate>
+              <StatusComments></StatusComments>
+              <StatusScore>9</StatusScore>
+            </StatusModel>
           </Statuses>
           <ScheduledAppointments />
         </StudentModel>
@@ -76,22 +82,7 @@
         </StudentModel>
       </Students>
       <ScheduledAppointments />
-      <AvailableAppointments>
-        <AppointmentModel>
-          <AppointmentId>APP-65</AppointmentId>
-          <Date>01/01/0001</Date>
-          <Time>00:00</Time>
-          <Duration>0</Duration>
-          <StudentAttending></StudentAttending>
-        </AppointmentModel>
-        <AppointmentModel>
-          <AppointmentId>APP-66</AppointmentId>
-          <Date>01/01/0001</Date>
-          <Time>00:00</Time>
-          <Duration>0</Duration>
-          <StudentAttending></StudentAttending>
-        </AppointmentModel>
-      </AvailableAppointments>
+      <AvailableAppointments />
       <CompletedAppointments>
         <AppointmentModel>
           <AppointmentId>App-1</AppointmentId>
@@ -107,8 +98,23 @@
           <Duration>1 Hour</Duration>
           <StudentAttending>ST001</StudentAttending>
         </AppointmentModel>
+        <AppointmentModel>
+          <AppointmentId>APP-65</AppointmentId>
+          <Date>01/01/0001</Date>
+          <Time>00:00</Time>
+          <Duration>0</Duration>
+          <StudentAttending>ST001</StudentAttending>
+        </AppointmentModel>
       </CompletedAppointments>
-      <IncompleteAppointments />
+      <IncompleteAppointments>
+        <AppointmentModel>
+          <AppointmentId>APP-67</AppointmentId>
+          <Date>04/03/0045</Date>
+          <Time>03:04</Time>
+          <Duration>0</Duration>
+          <StudentAttending>ST002</StudentAttending>
+        </AppointmentModel>
+      </IncompleteAppointments>
     </PersonalSupervisorModel>
     <PersonalSupervisorModel>
       <StaffNumber>PS002</StaffNumber>
