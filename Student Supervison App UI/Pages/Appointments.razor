@@ -26,9 +26,16 @@
 <div class="app-display-container">
     @if (isAvailable)
     {
-        <h6 class="app-heading">Available Appointments</h6>
+
         @if (personalSupervisor!.AvailableAppointments.Count > 0)
         {
+            <div>
+                <h6 class="app-heading">Available Appointments</h6>
+                <div class="form-group-button">
+                    <button @onclick="() => AddAvailableAppointment(ref isAppointment)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Add Available Appointment</button>
+                </div>
+            </div>
+
             @foreach (var app in personalSupervisor!.AvailableAppointments)
             {
                 <div class="studentBox">
@@ -44,9 +51,7 @@
                 </div>
 
             }
-            <div class ="form-group-button">
-                <button @onclick="() => AddAvailableAppointment(ref isAppointment)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Add Available Appointment</button>
-            </div>
+
         }
         else
         {
@@ -265,7 +270,9 @@
         personalSupervisor!.CompletedAppointments.Add(appointment);
         personalSupervisor!.ScheduledAppointments.RemoveAll(a => a.AppointmentId == appointment.AppointmentId);
         personalSupervisor.InteractionScore += 10;
-        dataManager.UpdateInteractionScore(StaffNumber, personalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.UpdateInteractionScore(StaffNumber!, personalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.RemoveScheduledAppointmentForStudentFromXML(appointment.StudentAttending, appointment.AppointmentId,"C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.RemoveScheduledAppointmentFromXML(personalSupervisor.StaffNumber, appointment.AppointmentId, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         SelectView(ref isCompleted);
     }
 
@@ -275,7 +282,9 @@
         personalSupervisor!.IncompleteAppointments.Add(appointment);
         personalSupervisor!.ScheduledAppointments.RemoveAll(a => a.AppointmentId == appointment.AppointmentId);
         personalSupervisor.InteractionScore -=10;
-        dataManager.UpdateInteractionScore(StaffNumber, personalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.UpdateInteractionScore(StaffNumber!, personalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.RemoveScheduledAppointmentForStudentFromXML(appointment.StudentAttending, appointment.AppointmentId, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.RemoveScheduledAppointmentFromXML(personalSupervisor.StaffNumber, appointment.AppointmentId, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         SelectView(ref isIncomplete);
 
     }

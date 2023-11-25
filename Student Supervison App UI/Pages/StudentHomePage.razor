@@ -25,10 +25,10 @@
 <div class="student-homepage-button-container">
 
     <div class="ButtonBox">
-        <button @onclick="() => AddNewStatus(student.StudentNumber)" class="btn btn-outline-light btn-lg text-uppercase">Add New Status</button>
+        <button @onclick="() => OpenAddNewStatus(student.StudentNumber)" class="btn btn-outline-light btn-lg text-uppercase">Add New Status</button>
     </div>
     <div class="ButtonBox">
-        <button class="btn btn-outline-light btn-lg text-uppercase">Book Appointment</button>
+        <button @onclick="() => OpenBookAppointment(student.StudentNumber)" class="btn btn-outline-light btn-lg text-uppercase">Book Appointment</button>
     </div>
 </div>
 
@@ -39,17 +39,18 @@
     @if (student.Statuses.Count > 0)
     {
 
-        @foreach (var status in student!.Statuses)
-        {
+        for(int i = student.Statuses.Count -1; i >= 0; i--)
+        {  
             <div class="studentBox">
                 <div class="studentBoxInfo">
-                    <h6>Status Id: @status.StatusId</h6>
-                    <h6>Upload Date: @status.StatusDate</h6>
-                    <h6>Comments: @status.StatusComments</h6>
-                    <h6>Score: @status.StatusScore</h6>
+                    <h6>Status Id: @student.Statuses[i].StatusId</h6>
+                    <h6>Upload Date: @student.Statuses[i].StatusDate</h6>
+                    <h6>Comments: @student.Statuses[i].StatusComments</h6>
+                    <h6>Score: @student.Statuses[i].StatusScore</h6>
                 </div>
             </div>
         }
+
     }
     else
     {
@@ -76,8 +77,6 @@
     private PersonalSupervisorModel? supervisor;
     private StudentModel? student;
 
-    private bool moreThanTwo;
-
 
     protected override void OnInitialized()
     {
@@ -86,9 +85,14 @@
 
     }
 
-    public void AddNewStatus(string StudentNumber)
+    public void OpenAddNewStatus(string StudentNumber)
     {
         navManager.NavigateTo($"/AddStatusPage/{StudentNumber}");
+    }
+
+    public void OpenBookAppointment(string StudentNumber)
+    {
+        navManager.NavigateTo($"/StudentBookAppointment/{StudentNumber}");
     }
 
 

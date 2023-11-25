@@ -201,17 +201,33 @@ a, .btn-link {
     background-color: ghostwhite;
 }
 
-.app-display-container {
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: ghostwhite;
-    border: solid 5px;
-    border-color: navy;
-    border-radius: 15px;
-    min-height: 100px;
+.student-app-btn-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 1fr;
+    max-width: 100vw;
 }
+
+.g-item1{
+width: 100%
+}
+
+.g-item2 {
+    width: 100%
+}
+
+
+    .app-display-container {
+        font-family: 'Montserrat', sans-serif;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: ghostwhite;
+        border: solid 5px;
+        border-color: navy;
+        border-radius: 15px;
+        min-height: 100px;
+    }
 
 .app-heading{
     color:navy;

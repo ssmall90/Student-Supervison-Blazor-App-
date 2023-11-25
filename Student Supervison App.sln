@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Student Supervison App UI", "Student Supervison App UI\Student Supervison App UI.csproj", "{0CE20349-91C5-47CA-BDD3-D03D01F024FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student Supervison App Library", "Student Supervison App Library\Student Supervison App Library.csproj", "{AD4B6D6A-1352-4B10-BBEC-6B33320E2365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Student Supervison App Library", "Student Supervison App Library\Student Supervison App Library.csproj", "{AD4B6D6A-1352-4B10-BBEC-6B33320E2365}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

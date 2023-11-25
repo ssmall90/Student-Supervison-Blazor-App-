@@ -82,7 +82,7 @@
     protected override void OnInitialized()
     {
         seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
-        student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber, seniorTutors);
+        student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber!, seniorTutors);
         hasAdded = false;
     }
 
