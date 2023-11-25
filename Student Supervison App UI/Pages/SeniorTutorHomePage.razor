@@ -1,4 +1,5 @@
-﻿@using Student_Supervisor_Data_Access.DataManager;
+﻿@using Student_Supervison_App_Library;
+@using Student_Supervisor_Data_Access.DataManager;
 @using Student_Supervisor_Logic.Factory;
 @using Student_Supervisor_Logic.Models;
 @inject IDataManager dataManager
@@ -53,7 +54,7 @@ else
 
     protected override void OnInitialized()
     {
-        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile(FilePathConstants.ConstructPath());
         seniorTutor = dataManager.GetSeniorTutor(StaffNumber!, seniorTutors);
 
     }

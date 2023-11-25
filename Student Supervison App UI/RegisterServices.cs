@@ -12,21 +12,7 @@ namespace Student_Supervison_App_UI
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<IDataManager, DataManager>();
-
-            //builder.Services.AddServerSideBlazor().AddMicrosoftIdentityConsentHandler();
-            //builder.Services.AddMemoryCache();
-            //builder.Services.AddControllersWithViews().AddMicrosoftIdentityUI();
-            //builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-            //.AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAdB2C"));
-
-            //builder.Services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("Admin", policy =>
-            //    {
-            //        policy.RequireClaim("jobTitle", "Admin");
-            //    });
-            //});
-
+           
 
         }
     }

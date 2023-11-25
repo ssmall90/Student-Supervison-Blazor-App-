@@ -13,7 +13,9 @@ namespace Student_Supervisor_Data_Access.DataManager
 {
     public class DataManager : IDataManager
     {
+
         public List<SeniorTutorModel>? CurrentData { get; set; }
+
         public string? filePathForXml { get; set; }
 
 
@@ -56,7 +58,7 @@ namespace Student_Supervisor_Data_Access.DataManager
         #region Login Management
         public StudentModel GetStudentAndAssignPersonalSupervisor(string studentNumber, List<SeniorTutorModel> tutors)
         {
-            
+
 
             PersonalSupervisorModel pSupervisor = null;
 

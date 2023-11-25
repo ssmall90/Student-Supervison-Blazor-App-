@@ -18,7 +18,7 @@
           <FirstName>Paul</FirstName>
           <LastName>Davis</LastName>
           <Email>paul@example.com</Email>
-          <WellbeingScore>9</WellbeingScore>
+          <WellbeingScore>8</WellbeingScore>
           <Statuses>
             <StatusModel>
               <StatusId>STAT-00119</StatusId>
@@ -67,6 +67,18 @@
               <StatusDate>25/11/2023</StatusDate>
               <StatusComments></StatusComments>
               <StatusScore>9</StatusScore>
+            </StatusModel>
+            <StatusModel>
+              <StatusId>STAT-00127</StatusId>
+              <StatusDate>25/11/2023</StatusDate>
+              <StatusComments></StatusComments>
+              <StatusScore>0</StatusScore>
+            </StatusModel>
+            <StatusModel>
+              <StatusId>STAT-00128</StatusId>
+              <StatusDate>25/11/2023</StatusDate>
+              <StatusComments></StatusComments>
+              <StatusScore>8</StatusScore>
             </StatusModel>
           </Statuses>
           <ScheduledAppointments />

@@ -1,4 +1,5 @@
-﻿@using Student_Supervisor_Data_Access.DataManager;
+﻿@using Student_Supervison_App_Library;
+@using Student_Supervisor_Data_Access.DataManager;
 @using Student_Supervisor_Logic.Factory;
 @using Student_Supervisor_Logic.Models;
 @inject IDataManager dataManager
@@ -106,7 +107,7 @@
 
     protected override void OnInitialized()
     {
-        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile(FilePathConstants.ConstructPath());
         student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber!, seniorTutors);
         ResetView();
         SelectView(ref isAvailable);
@@ -139,11 +140,11 @@
 
     private void ConfirmAppointment(AppointmentModel appointment)
     {
-        dataManager.ScheduleAppointmentForSupervisor(student!.PersonalSupervisor.StaffNumber, appointment.AppointmentId, student.StudentNumber, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.ScheduleAppointmentForSupervisor(student!.PersonalSupervisor.StaffNumber, appointment.AppointmentId, student.StudentNumber, FilePathConstants.ConstructPath());
         student.ScheduledAppointments.Add(appointment);
         student.PersonalSupervisor.AvailableAppointments.RemoveAll(a => a.AppointmentId == appointment.AppointmentId);
         student.PersonalSupervisor.UpdateInteractionScore(10);
-        dataManager.UpdateInteractionScore(student.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        dataManager.UpdateInteractionScore(student.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.InteractionScore, FilePathConstants.ConstructPath());
         hasScheduled = true;
     }
 

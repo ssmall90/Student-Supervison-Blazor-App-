@@ -1,4 +1,5 @@
 ﻿@page "/Details/{StudentNumber}/{isTutor}"
+@using Student_Supervison_App_Library;
 @using Student_Supervisor_Data_Access.DataManager;
 @using Student_Supervisor_Logic.Models;
 @inject IDataManager dataManager
@@ -80,7 +81,7 @@ else
 
     protected override void OnInitialized()
     {
-        database = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        database = dataManager.DeserializeSeniorTutorModelFromFile(FilePathConstants.ConstructPath());
         student = dataManager.GetStudentAndAssignPersonalSupervisor(StudentNumber!,database);
         appointments = false;
         noAppointments = false;
@@ -91,9 +92,9 @@ else
     {
         if(student!.PersonalSupervisor.AvailableAppointments.Count > 0)
         {
-            dataManager.ScheduleAppointmentForSupervisor(student!.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.AvailableAppointments[0].AppointmentId, student.StudentNumber, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+            dataManager.ScheduleAppointmentForSupervisor(student!.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.AvailableAppointments[0].AppointmentId, student.StudentNumber, FilePathConstants.ConstructPath());
             student.PersonalSupervisor.InteractionScore += 10;
-            dataManager.UpdateInteractionScore(student.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+            dataManager.UpdateInteractionScore(student.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.InteractionScore, FilePathConstants.ConstructPath());
             appointments = true;
         }
         else
