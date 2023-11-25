@@ -17,23 +17,32 @@
             <span>Studet WellBeing Average: @supervisor.StudentWellBeingAverage</span>
         </div>
     </div>
-
 </div>
 
 
-@foreach(var student in supervisor!.Students)
+@if(supervisor.Students.Count > 0)
+{
+    @foreach (var student in supervisor!.Students)
+    {
+        <div class="studentBox">
+            <div class="studentBoxInfo">
+                <h6>Student Number: @student.StudentNumber</h6>
+                <h6>Name: @student.FirstName @student.LastName</h6>
+                <h6>Wellbeing Score: @student.WellbeingScore</h6>
+            </div>
+            <div class="ButtonBox">
+                <button class="btn btn-outline-light btn-lg text-uppercase" @onclick="() => OpenDetails(student)">View Profile</button>
+            </div>
+        </div>
+    }
+}
+else
 {
     <div class="studentBox">
-        <div class="studentBoxInfo">
-            <h6>Student Number: @student.StudentNumber</h6>
-            <h6>Name: @student.FirstName @student.LastName</h6>
-            <h6>Wellbeing Score: @student.WellbeingScore</h6>
-        </div>
-        <div class="ButtonBox">
-            <button class="btn btn-outline-light btn-lg text-uppercase" @onclick="() => OpenDetails(student)">View Profile</button>
-        </div>
+        <h6>You Do Not Have Any Students</h6>
     </div>
 }
+
 
 
 <div class="manage-app-div">
@@ -59,7 +68,7 @@
 
     private void OpenDetails(StudentModel student)
     {
-        navManager.NavigateTo($"/Details/{student.StudentNumber}");
+        navManager.NavigateTo($"/Details/{student.StudentNumber}/false");
     }
 
 

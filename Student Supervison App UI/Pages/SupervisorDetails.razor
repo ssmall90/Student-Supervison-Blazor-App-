@@ -1,0 +1,68 @@
+﻿@page "/SupervisorDetails/{StaffNumber}"
+@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Models;
+@inject IDataManager dataManager
+@inject NavigationManager navManager
+
+<h4>Supervisor Details</h4>
+<div class="studentDetailsBox">
+    <h6>Staff Number: @supervisor!.StaffNumber</h6>
+    <h6>Name: @supervisor!.FirstName @supervisor.LastName</h6>
+</div>
+
+
+<h4>Supervisor Scores</h4>
+<div class="studentDetailsBox">
+    <h6>Number of Students: @supervisor!.Students.Count</h6>
+    <h6>Students Wellbeing Average: @supervisor!.StudentWellBeingAverage</h6>
+    <h6>Interaction Score: @supervisor!.InteractionScore</h6>
+</div>
+
+
+<h4>Supervisors Students</h4>
+
+    @if (supervisor.Students.Count > 0)
+    {
+        @foreach (var student in supervisor.Students)
+        {
+
+            <div class="studentBox">
+                <div>
+                    <h6>Student Number: @student.StudentNumber</h6>
+                    <h6>Name: @student.FirstName @student.LastName</h6>
+                    <h6>Wellbeing Score: @student.WellbeingScore</h6>
+                </div>
+                <div>
+                    <button class="btn btn-outline-light btn-lg text-uppercase" @onclick="() => OpenDetails(student)">View Profile</button>
+                </div>
+            </div>
+
+        }
+    }
+
+
+
+
+
+
+
+@code {
+    [Parameter]
+    public string? StaffNumber { get; set; }
+
+    private List<SeniorTutorModel>? seniorTutors;
+    PersonalSupervisorModel? supervisor;
+
+
+    protected override void OnInitialized()
+    {
+        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        supervisor = dataManager.GetPersonalSupervisor(StaffNumber!, seniorTutors);
+
+    }
+
+    private void OpenDetails(StudentModel student)
+    {
+        navManager.NavigateTo($"/Details/{student.StudentNumber}/true");
+    }
+}

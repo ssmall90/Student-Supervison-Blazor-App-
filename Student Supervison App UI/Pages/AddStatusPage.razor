@@ -6,8 +6,6 @@
 
 @page "/AddStatusPage/{StudentNumber}"
 
-<h3>AddStatusPage</h3>
-
 <div class="app-display-container">
 <h6>Add New Status</h6>
 
@@ -89,11 +87,28 @@
     public void ConfirmStatus(int studyScore, int supportScore, int overallScore, string comments)
     {
 
-            int score = studiesScore + supportScore + wellbeingScore;
-            StatusModel newStatus = ModelFactory.CreateStatus(statusComments ?? string.Empty, score);
-            student!.Statuses.Add(newStatus);
-            dataManager.AppendStatusToStudentInXml(StudentNumber!, newStatus, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
-            hasAdded = true;
+        //calculate new status score and apply iy to student.
+        int score = student!.CalculateStatusScore(studyScore, supportScore, overallScore);
+        student.WellbeingScore = score;
+
+        //update personal supervisors wellbeing average
+        student.PersonalSupervisor.UpdateAverageWellbeingScore();
+
+        //create status and add it to students statuses
+        StatusModel newStatus = ModelFactory.CreateStatus(statusComments ?? string.Empty, score);
+        student!.Statuses.Add(newStatus);
+
+        //add status to xml
+        dataManager.AppendStatusToStudentInXml(StudentNumber!, newStatus, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+
+        //update students score on xml 
+        dataManager.UpdateStudentWellBeingScoreInXml(student.StudentNumber, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+
+        //update supervisors well being average on xml
+        dataManager.UpdatePersonalSupervisorWellBeingAverageInXml(student.PersonalSupervisor.StaffNumber, student.PersonalSupervisor.StudentWellBeingAverage, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+
+
+        hasAdded = true;
     }
 
     private void ClosePage(string StudentNumber)

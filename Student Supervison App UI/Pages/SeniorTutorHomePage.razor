@@ -1,0 +1,66 @@
+﻿@using Student_Supervisor_Data_Access.DataManager;
+@using Student_Supervisor_Logic.Factory;
+@using Student_Supervisor_Logic.Models;
+@inject IDataManager dataManager
+@inject NavigationManager navManager
+
+@page "/SeniorTutorHomePage/{StaffNumber}"
+
+<div class="welcome-header">
+    <div>
+        <h3 class="pageTitle">Welcome @seniorTutor!.FirstName</h3>
+    </div>
+</div>
+
+<h4 class="status-header-text">Supervisors</h4>
+
+@if (seniorTutor.PersonalSupervisors.Count > 0)
+{
+    @foreach (var supervisor in seniorTutor!.PersonalSupervisors)
+    {
+        <div class="studentBox">
+            <div class="studentBoxInfo">
+                <h6>Supervisor Number: @supervisor.StaffNumber</h6>
+                <h6>Name: @supervisor.FirstName @supervisor.LastName</h6>
+                <h6>Wellbeing Score: @supervisor.StudentWellBeingAverage</h6>
+                <h6>Interaction Score: @supervisor.InteractionScore</h6>
+            </div>
+            <div class="ButtonBox">
+                <button @onclick="() => OpenSupervisorDetails(supervisor)" class="btn btn-outline-light btn-lg text-uppercase" >View Profile</button>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="studentBox">
+        <h6>You Do Not Have Any Statuses</h6>
+        <div class="ButtonBox">
+            <button class="btn btn-outline-light btn-lg text-uppercase">Add New Status</button>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public string? StaffNumber { get; set; }
+
+    private List<SeniorTutorModel>? seniorTutors;
+    private SeniorTutorModel? seniorTutor;
+
+
+
+    protected override void OnInitialized()
+    {
+        seniorTutors = dataManager.DeserializeSeniorTutorModelFromFile("C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
+        seniorTutor = dataManager.GetSeniorTutor(StaffNumber!, seniorTutors);
+
+    }
+
+    private void OpenSupervisorDetails(PersonalSupervisorModel supervisor)
+    {
+        navManager.NavigateTo($"/SupervisorDetails/{supervisor.StaffNumber}");
+    }
+
+}

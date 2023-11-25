@@ -1,4 +1,4 @@
-﻿@page "/Details/{StudentNumber}"
+﻿@page "/Details/{StudentNumber}/{isTutor}"
 @using Student_Supervisor_Data_Access.DataManager;
 @using Student_Supervisor_Logic.Models;
 @inject IDataManager dataManager
@@ -7,6 +7,7 @@
 <h3>Details</h3>
 
 <h4>Student Details</h4>
+
 <div class="studentDetailsBox">
     <h6>@student!.StudentNumber</h6>
     <h6>@student!.FirstName @student.LastName</h6>
@@ -37,7 +38,7 @@ else
 </div>
 
 
-@if(appointments == false)
+@if(appointments == false && isTutor == "false")
 {
     <div class="manage-app-div">
         <button @onclick="() => BookAppointmnet()" class="btn btn-outline-light btn-lg text-uppercase">Book Appointment</button>
@@ -67,11 +68,15 @@ else
     [Parameter]
     public string? StudentNumber { get; set; }
 
+    [Parameter]
+    public string? isTutor { get; set; }
+
     private List<SeniorTutorModel>? database;
     StudentModel? student;
 
     bool noAppointments;
     bool appointments;
+ 
 
     protected override void OnInitialized()
     {

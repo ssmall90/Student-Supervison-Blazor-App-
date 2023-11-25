@@ -8,7 +8,7 @@
 
 <form>
     <div>
-        <label>Enter Student Number or Staff Number</label>
+        <label class="label-text">Enter Student Number or Staff Number</label>
         <input type="text" class="form-control" @bind="loginDetails" />
     </div>
 </form>
@@ -17,13 +17,11 @@
         Confirm
     </button>
 </div>
-<div>
 
-</div>
 
 @if(isValid == false)
 {
-    <div class="appointmentBox">
+    <div class="loginFailedMessageBox">
         <span>User Details Not Valid. Please Try Again</span>
     </div>
 }
@@ -54,36 +52,48 @@
 
     private void LogUserIn(string userNumber)
     {
-        if (userNumber.ToUpper().Contains("ST"))
+        if(userNumber is not null)
         {
-            student = dataManager.GetStudentAndAssignPersonalSupervisor(userNumber.ToUpper(), seniorTutors!);
-            if (student != null)
+            if (userNumber.ToUpper().Contains("ST"))
             {
-                OpenStudentDetails(student.StudentNumber);
+                student = dataManager.GetStudentAndAssignPersonalSupervisor(userNumber.ToUpper(), seniorTutors!);
+                if (student != null)
+                {
+                    OpenStudentDetails(student.StudentNumber);
+                }
+                else
+                {
+                    isValid = false;
+                }
             }
-            else
+            else if (userNumber.ToUpper().Contains("PS"))
             {
-                isValid = false;
+                personalSupervisor = dataManager.GetPersonalSupervisor(userNumber.ToUpper(), seniorTutors!);
+                if (personalSupervisor != null)
+                {
+                    OpenDetails(personalSupervisor.StaffNumber);
+                }
+                else
+                {
+                    isValid = false;
+                }
+            }
+            else if (userNumber.ToUpper().Contains("SN"))
+            {
+                seniorTutor = dataManager.GetSeniorTutor(userNumber.ToUpper(), seniorTutors!);
+                if (seniorTutor != null)
+                {
+                    OpenTutorDetails(seniorTutor.StaffNumber);
+                }
+                else
+                {
+                    isValid = false;
+                }
+
             }
         }
-        else if (userNumber.ToUpper().Contains("PS"))
-        {
-            personalSupervisor = dataManager.GetPersonalSupervisor(userNumber.ToUpper(), seniorTutors!);
-            if (personalSupervisor != null)
-            {
-                OpenDetails(personalSupervisor.StaffNumber);
-            }
-            else
-            {
-                isValid = false;
-            }
-        }
-        else if (userNumber.ToUpper().Contains("SN"))
-        {
-            seniorTutor = dataManager.GetSeniorTutor(userNumber.ToUpper(), seniorTutors!);
-            // Logic for senior tutor...
-        }
-        else
+      
+        else if(userNumber == null)
         {
             isValid = false;
         }
@@ -98,6 +108,11 @@
     private void OpenStudentDetails(string StudentNumber)
     {
         navManager.NavigateTo($"/StudentHomePage/{StudentNumber}");
+    }
+
+    private void OpenTutorDetails(string StaffNumber)
+    {
+        navManager.NavigateTo($"/SeniorTutorHomePage/{StaffNumber}");
     }
 
 
