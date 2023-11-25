@@ -150,7 +150,7 @@ namespace Student_Supervisor_Data_Access.DataManager
 
                     XElement statusElement = new XElement("StatusModel",
                         new XElement("StatusId", status.StatusId),
-                        new XElement("StatusDate", status.StatusDate.ToString("yyyy-MM-dd")),
+                        new XElement("StatusDate", status.StatusDate),
                         new XElement("StatusComments", status.StatusComments),
                         new XElement("StatusScore", status.StatusScore));
 

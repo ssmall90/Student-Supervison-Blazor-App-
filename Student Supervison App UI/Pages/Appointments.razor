@@ -166,13 +166,29 @@
                 <label>Duration In Minutes:</label>
                 <input type="number" class="form-control" @bind="durationInMinutes">
             </div>
-            <div class="form-group-button">
-                <button @onclick="() => ConfirmNewAppointment(appointmentDate.ToString(),appointmentTime.ToString(),durationInMinutes.ToString()) " class="btn btn-app btn-outline-light btn-lg text-uppercase">
-                    Confirm
-                </button>
-            </div>
 
         </form>
+        @if (hasAdded == false)
+        {
+            <div class="student-homepage-button-container">
+                <div class="form-group-button">
+                    <button @onclick="() => ConfirmNewAppointment(appointmentDate.ToString(),appointmentTime.ToString(),durationInMinutes.ToString()) " class="btn btn-app btn-outline-light btn-lg text-uppercase">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        }
+        @if (hasAdded)
+        {
+            <div class="statusBox">
+                <h6>Thank You Your Appointment Has Been Added</h6>
+                <div class="form-group-button-status">
+                    <button @onclick="() => ClosePage(personalSupervisor!.StaffNumber) " class="btn btn-app btn-outline-light btn-lg text-uppercase">
+                        Return To Home Page
+                    </button>
+                </div>
+            </div>
+        }
     }
 
 </div>
@@ -195,12 +211,16 @@
     private bool isCompleted;
     private bool isIncomplete;
     private bool isAppointment;
+    private bool hasAdded;
+
     private List<SeniorTutorModel>? database;
     private PersonalSupervisorModel? personalSupervisor;
 
     private DateOnly appointmentDate;
     private TimeOnly appointmentTime;
     private int durationInMinutes;
+
+
 
     protected override void OnInitialized()
     {
@@ -244,7 +264,7 @@
             personalSupervisor.UpdateInteractionScore(5);
             dataManager.AppendAppointmentToAvailableAppointmentsXml(StaffNumber!, newAppointment, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
             dataManager.UpdateInteractionScore(StaffNumber!, personalSupervisor.InteractionScore, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
-            SelectView(ref isAvailable);
+            hasAdded = true;
 
         }
         catch
@@ -287,6 +307,12 @@
         dataManager.RemoveScheduledAppointmentFromXML(personalSupervisor.StaffNumber, appointment.AppointmentId, "C:\\Users\\ssmal\\source\\repos\\Student Supervison App\\Student Supervison App Library\\XmlFiles\\Database.xml");
         SelectView(ref isIncomplete);
 
+    }
+
+    private void ClosePage(string StaffNumber)
+    {
+
+        navManager.NavigateTo($"/SupervisorHomePage/{StaffNumber}");
     }
 
 }

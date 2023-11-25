@@ -111,6 +111,15 @@ a, .btn-link {
 
 }
 
+.page-container{
+    display: grid;
+
+}
+
+.close-button-container{
+
+}
+
 
 .studentDetailsBox {
     display: flex;

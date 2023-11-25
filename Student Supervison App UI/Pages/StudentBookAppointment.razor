@@ -6,77 +6,82 @@
 
 @page "/StudentBookAppointment/{StudentNumber}"
 
-<div class="student-app-btn-container">
-    <div>
-        <button @onclick="() => SelectView(ref isAvailable)" class="col-6 g-item1 btn btn-app btn-outline-light btn-lg text-uppercase">Available Appointments</button>
-    </div>
-    <div>
-        <button @onclick="() => SelectView(ref isScheduled)" class="col-6 g-item2 btn btn-app btn-outline-light btn-lg text-uppercase">Scheduled Appointments</button>
-    </div>
-</div>
 
-<div class="app-display-container">
-    @if (isAvailable)
-    {
-        <h6 class="app-heading">Available Appointments</h6>
-        @if (student!.PersonalSupervisor!.AvailableAppointments.Count > 0 && !hasScheduled)
-        {
-            foreach(var app in student.PersonalSupervisor.AvailableAppointments)
-            {
-                <div class="studentBox">
-                    <div class="studentBoxInfo">
-                        <h6>Appointment Id: @app.AppointmentId</h6>
-                        <h6>Date: @app.Date</h6>
-                        <h6>Time:@app.Time</h6>
-                        <h6>Duration: @app.Duration</h6>
-                    </div>
-                    <div>
-                        <button @onclick="() => ConfirmAppointment(app)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Book Now</button>
-                    </div>
-                </div>
-            }
+<div class="page-container">
 
-        }
-        else
-        {
-            <div class="noAppointmentBox">
-                <div>
-                    <span>There Are No Appointments Available For You. Please Check Your Scheduled Appointmnets</span>
-                </div>
+    <div class="col-12">
+        <div class="student-app-btn-container">
+            <div>
+                <button @onclick="() => SelectView(ref isAvailable)" class="col-6 g-item1 btn btn-app btn-outline-light btn-lg text-uppercase">Available Appointments</button>
             </div>
+            <div>
+                <button @onclick="() => SelectView(ref isScheduled)" class="col-6 g-item2 btn btn-app btn-outline-light btn-lg text-uppercase">Scheduled Appointments</button>
+            </div>
+        </div>
 
-        }
-    }
-    @if (isScheduled)
-    {
-        <h6 class="app-heading">Scehduled Appointments</h6>
-        @if (student!.ScheduledAppointments.Count > 0)
-        {
-            for (int i = student.ScheduledAppointments.Count - 1; i >= 0; i--)
+        <div class="app-display-container">
+            @if (isAvailable)
             {
-                <div class="studentBox">
-                    <div class="studentBoxInfo">
-                        <h6>Appointment Id: @student.ScheduledAppointments[i].AppointmentId</h6>
-                        <h6>Date: @student.ScheduledAppointments[i].Date</h6>
-                        <h6>Time: @student.ScheduledAppointments[i].Time</h6>
-                        <h6>Duration: @student.ScheduledAppointments[i].Duration</h6>
+                <h6 class="app-heading">Available Appointments</h6>
+                @if (student!.PersonalSupervisor!.AvailableAppointments.Count > 0 && !hasScheduled)
+                {
+                    foreach (var app in student.PersonalSupervisor.AvailableAppointments)
+                    {
+                        <div class="studentBox">
+                            <div class="studentBoxInfo">
+                                <h6>Appointment Id: @app.AppointmentId</h6>
+                                <h6>Date: @app.Date</h6>
+                                <h6>Time:@app.Time</h6>
+                                <h6>Duration: @app.Duration</h6>
+                            </div>
+                            <div>
+                                <button @onclick="() => ConfirmAppointment(app)" class="btn btn-app btn-outline-light btn-lg text-uppercase">Book Now</button>
+                            </div>
+                        </div>
+                    }
+
+                }
+                else
+                {
+                    <div class="noAppointmentBox">
+                        <div>
+                            <span>There Are No Appointments Available For You. Please Check Your Scheduled Appointmnets</span>
+                        </div>
                     </div>
-                </div>
+
+                }
             }
-        }
-        else
-        {
-            <div>You Have No Scheduled Appointments</div>
+            @if (isScheduled)
+            {
+                <h6 class="app-heading">Scehduled Appointments</h6>
+                @if (student!.ScheduledAppointments.Count > 0)
+                {
+                    for (int i = student.ScheduledAppointments.Count - 1; i >= 0; i--)
+                    {
+                        <div class="studentBox">
+                            <div class="studentBoxInfo">
+                                <h6>Appointment Id: @student.ScheduledAppointments[i].AppointmentId</h6>
+                                <h6>Date: @student.ScheduledAppointments[i].Date</h6>
+                                <h6>Time: @student.ScheduledAppointments[i].Time</h6>
+                                <h6>Duration: @student.ScheduledAppointments[i].Duration</h6>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div>You Have No Scheduled Appointments</div>
 
-        }
-    }
-    @if (isAppointment)
-    {
-        <h6>Add New Appointment</h6>
-    }
+                }
+            }
+            @if (isAppointment)
+            {
+                <h6>Add New Appointment</h6>
+            }
 
+        </div>
+    </div>
 </div>
-
 
 
 

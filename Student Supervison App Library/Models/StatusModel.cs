@@ -35,7 +35,7 @@ namespace Student_Supervisor_Logic.Models
         }
 
         public string StatusId { get; set; }
-        public DateOnly StatusDate { get; set; }
+        public string StatusDate { get; set; }
         public string StatusComments { get; set; }
         public int StatusScore { get; set; }
         public StatusModel()
@@ -47,7 +47,7 @@ namespace Student_Supervisor_Logic.Models
         {
             StatusComments = statusComments;
             StatusScore = statusScore;
-            StatusDate = DateOnly.FromDateTime(DateTime.Now);
+            StatusDate = DateOnly.FromDateTime(DateTime.Now).ToString();
             StatusId = $"STAT-00{_nextId++}";
             _nextId = _nextId++;
             SaveLastIdNumber(_nextId);
